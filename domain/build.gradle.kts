@@ -1,9 +1,9 @@
 import com.gram15inch.buildsrc.Versions
-import com.gram15inch.buildsrc.Libraries
-import com.gram15inch.buildsrc.UnitTest
 import com.gram15inch.buildsrc.AndroidX
 import com.gram15inch.buildsrc.Kotlin
 import com.gram15inch.buildsrc.Google
+import com.gram15inch.buildsrc.Libraries
+import com.gram15inch.buildsrc.UnitTest
 import com.gram15inch.buildsrc.AndroidTest
 
 
@@ -16,15 +16,22 @@ plugins {
 }
 
 android {
-    namespace = "com.gram15inch.data"
+    namespace = "com.gram15inch.domain"
     compileSdk = 33
 
     defaultConfig {
         minSdk = 31
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                argument("dagger.hilt.disableModulesHaveInstallInCheck","true")
+            }
+        }
         consumerProguardFiles("consumer-rules.pro")
     }
+
 
     buildTypes {
         release {
@@ -45,15 +52,7 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":domain")))
     testImplementation(UnitTest.JUNIT)
-
-    // dagger
-    implementation(Google.HILT_ANDROID)
-    kapt (Google.HILT_COMPILER)
-
-
-
 
     // retrofit for networking
     implementation (Libraries.RETROFIT)
@@ -69,14 +68,24 @@ dependencies {
     kapt(Libraries.MOSHI_CODEGEN)
 
 
+    // dagger
+    implementation(Google.HILT_ANDROID)
+    kapt (Google.HILT_COMPILER)
 
-    implementation (Libraries.OKHTTP)
+    //hilt test
+    // For Robolectric tests.
+    testImplementation (Google.HILT_ANDROID_TESTING)
+    // ...with Kotlin.
+    kaptTest (Google.HILT_ANDROID_COMPILER)
+    // For instrumented tests.
+    androidTestImplementation (Google.HILT_ANDROID_TESTING)
+    // ...with Kotlin.
+    kaptAndroidTest (Google.HILT_ANDROID_COMPILER)
+    testImplementation(Libraries.MOCKK)
 
-    implementation (Libraries.OKHTTP_LOGGING_INTERCEPTOR)
+    // retrofit for networking
+    implementation (Libraries.RETROFIT)
 
-    //coroutine
-    testImplementation (Kotlin.COROUTINES_TEST)
-
-    // Timber : Log util
+// Timber : Log util
     implementation(Libraries.TIMBER)
 }
