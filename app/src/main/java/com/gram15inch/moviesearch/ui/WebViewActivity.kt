@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebViewClient
-import com.gram15inch.domain.policy.IntentPolicy
+import com.gram15inch.domain.policy.ExtraPolicy
 import com.gram15inch.moviesearch.databinding.ActivityWebViewBinding
 
 class WebViewActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val webUrl = intent.getStringExtra(IntentPolicy.WEB_URL)
+        val webUrl = intent.getStringExtra(ExtraPolicy.WEB_URL)
 
         webUrl?.let { url ->
             binding.run {

@@ -11,7 +11,7 @@ import com.gram15inch.domain.model.Movie
 import com.gram15inch.moviesearch.R
 import com.gram15inch.moviesearch.databinding.LayoutHolderMovieBinding
 
-class MovieAdapter (private val onItemClicked: (Movie) -> Unit) :
+class MovieAdapter (private val onItemClicked: (Movie) -> Unit,private val onLastPageListener: (Int) -> Unit) :
     ListAdapter<Movie, RecyclerView.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -29,7 +29,8 @@ class MovieAdapter (private val onItemClicked: (Movie) -> Unit) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val current = getItem(position)
         (holder as MovieViewHolder).bind(current)
-
+        if(position== currentList.size-1)
+            onLastPageListener(currentList.size+10)
     }
 
     inner class MovieViewHolder(var binding: LayoutHolderMovieBinding) :

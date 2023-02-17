@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:textSize="20sp"
+            android:text="@={viewModel.searchCurrent}"
             app:layout_constraintEnd_toStartOf="@+id/main_search_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/search_str"
             android:layout_marginEnd="5dp"
+            android:onClickListener="@{()->viewModel.refreshMovie(10)}"
             app:layout_constraintEnd_toStartOf="@+id/main_recent_search_btn"
             app:layout_constraintTop_toTopOf="@+id/main_recent_search_btn" />
 
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             android:text="@string/recent_search_str"
             android:layout_marginEnd="5dp"
+            android:onClickListener="@{activity.recentSearchClickListener}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,8 +51,9 @@
             android:id="@+id/main_movie_rcy"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:items="@{viewModel.movies}"
+            app:movieItems="@{viewModel.movies}"
             app:onMovieClickListener="@{activity.movieClickListener}"
+            app:onLastPageListener="@{activity.lastPageListener}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

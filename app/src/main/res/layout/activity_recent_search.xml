@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.gram15inch.moviesearch.ui.RecentSearchActivity" />
+        <variable
+            name="viewModel"
+            type="com.gram15inch.moviesearch.viewmodel.RecentSearchViewModel" />
+    </data>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recent_search_rcy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recentSearchItems="@{viewModel.recentSearches}"
+        app:onRecentSearchClickListener="@{activity.recentSearchClickListener}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+</layout>
