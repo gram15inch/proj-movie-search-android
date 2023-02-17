@@ -6,8 +6,6 @@ import com.gram15inch.buildsrc.Libraries
 import com.gram15inch.buildsrc.UnitTest
 import com.gram15inch.buildsrc.AndroidTest
 
-
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -67,6 +65,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
+    implementation("androidx.core:core-ktx:+")
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
