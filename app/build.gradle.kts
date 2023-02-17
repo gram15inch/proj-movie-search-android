@@ -66,7 +66,6 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
-    implementation("androidx.core:core-ktx:+")
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
