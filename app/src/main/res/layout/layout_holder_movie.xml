@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/holder_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
+
+
+    <ImageView
+        android:id="@+id/holder_movie_tn_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/tn_movie" />
+
+    <TextView
+        android:id="@+id/holder_movie_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/holder_movie_tn_img"
+        app:layout_constraintTop_toTopOf="@+id/holder_movie_tn_img"
+        tools:text="제목: 아바타2" />
+
+    <TextView
+        android:id="@+id/holder_movie_year_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/holder_movie_name_text"
+        app:layout_constraintTop_toBottomOf="@+id/holder_movie_name_text"
+        tools:text="출시: 2022" />
+
+    <TextView
+        android:id="@+id/holder_movie_rate_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/holder_movie_year_text"
+        app:layout_constraintTop_toBottomOf="@+id/holder_movie_year_text"
+        tools:text="평점: 0.00" />
+</androidx.constraintlayout.widget.ConstraintLayout>

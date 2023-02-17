@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MovieSearch</string>
+    <string name="search_str">검색</string>
+    <string name="recent_search_str">최근검색</string>
+
+    <string name="holder_movie_name">이름 : %s</string>
+    <string name="holder_movie_release">출시 : %s</string>
+    <string name="holder_movie_rate">평점 : %.2f</string>
 </resources>
