@@ -1,5 +1,7 @@
 package com.gram15inch.moviesearch.com.gram15inch.moviesearch
 
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gram15inch.domain.model.Movie
@@ -33,5 +35,10 @@ object BindingAdapters {
         val adapter = recyclerView.adapter as RecentSearchAdapter
 
         adapter.submitList(items)
+    }
+    @BindingAdapter("onEditorActionListener")
+    @JvmStatic
+    fun setOnEditorActionListener(editText: AppCompatEditText, actionListener: TextView.OnEditorActionListener){
+        editText.setOnEditorActionListener(actionListener)
     }
 }

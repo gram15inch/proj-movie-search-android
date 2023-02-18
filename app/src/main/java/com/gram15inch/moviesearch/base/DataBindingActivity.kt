@@ -1,7 +1,9 @@
 package com.gram15inch.moviesearch.base
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +39,12 @@ abstract class DataBindingActivity<T : ViewDataBinding>(val layout: Int) : AppCo
         dlg.show()
 
     }
-
+    fun hideKeyBoard(){
+        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        currentFocus?.windowToken?.also {
+            currentFocus?.clearFocus()
+            imm.hideSoftInputFromWindow(it, 0)
+        }
+    }
 
 }

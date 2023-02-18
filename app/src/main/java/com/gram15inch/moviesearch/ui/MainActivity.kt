@@ -2,7 +2,10 @@ package com.gram15inch.moviesearch.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View.OnClickListener
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -32,17 +35,19 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
 
     private fun setUiState() {
         CoroutineScope(Dispatchers.Default).launch {
-            viewModel.responseState.collect(){
-                when(it){
-                    ResponseState.ERROR->{showSnackBar("요청실패")
-                    viewModel.responseState.emit(ResponseState.NONE)}
-                    else->{}
+            viewModel.responseState.collect() {
+                when (it) {
+                    ResponseState.ERROR -> {
+                        showSnackBar("요청실패")
+                        viewModel.responseState.emit(ResponseState.NONE)
+                    }
+                    else -> {}
                 }
             }
         }
     }
 
-    val movieClickListener : (Movie) -> Unit = {
+    val movieClickListener: (Movie) -> Unit = {
         val intent = Intent(this, WebViewActivity::class.java)
         intent.putExtra(ExtraPolicy.WEB_URL, it.url)
         startActivity(intent)
@@ -54,17 +59,29 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
     }
 
     val searchClickListener = OnClickListener {
+        hideKeyBoard()
         viewModel.addRecentSearch()
         viewModel.refreshMovie()
+
     }
     val recentSearchClickListener = OnClickListener {
         val intent = Intent(this, RecentSearchActivity::class.java)
         resultRecentSearchLauncher.launch(intent)
     }
-    private fun setResultRecentSearch(){
+
+    val editorActionListener = TextView.OnEditorActionListener { _, actionId, _ ->
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            binding.mainSearchBtn.performClick()
+            true
+        } else
+            false
+    }
+
+    private fun setResultRecentSearch() {
         resultRecentSearchLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()){ result ->
-            if (result.resultCode == RESULT_OK){
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
                 val recent = result.data?.getStringExtra(ExtraPolicy.RECENT_SEARCH) ?: ""
                 viewModel.refreshRecentSearch(recent)
             }
