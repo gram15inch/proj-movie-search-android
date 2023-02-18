@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/search_str"
             android:layout_marginEnd="5dp"
-            android:onClickListener="@{()->viewModel.refreshMovie(10)}"
+            android:onClickListener="@{activity.searchClickListener}"
             app:layout_constraintEnd_toStartOf="@+id/main_recent_search_btn"
             app:layout_constraintTop_toTopOf="@+id/main_recent_search_btn" />
 

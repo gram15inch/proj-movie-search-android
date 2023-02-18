@@ -11,7 +11,10 @@ import com.gram15inch.domain.model.Movie
 import com.gram15inch.moviesearch.R
 import com.gram15inch.moviesearch.databinding.LayoutHolderMovieBinding
 
-class MovieAdapter (private val onItemClicked: (Movie) -> Unit,private val onLastPageListener: (Int) -> Unit) :
+class MovieAdapter(
+    private val onItemClicked: (Movie) -> Unit,
+    private val onLastPageListener: (Int) -> Unit
+) :
     ListAdapter<Movie, RecyclerView.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -29,8 +32,8 @@ class MovieAdapter (private val onItemClicked: (Movie) -> Unit,private val onLas
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val current = getItem(position)
         (holder as MovieViewHolder).bind(current)
-        if(position== currentList.size-1)
-            onLastPageListener(currentList.size+10)
+        if (position == currentList.size - 1)
+            onLastPageListener(currentList.size + 10)
     }
 
     inner class MovieViewHolder(var binding: LayoutHolderMovieBinding) :
@@ -38,13 +41,14 @@ class MovieAdapter (private val onItemClicked: (Movie) -> Unit,private val onLas
         @SuppressLint("CheckResult")
         fun bind(res: Movie) {
             binding.apply {
-               Glide.with(binding.root).load(res.thumbnail).error(R.drawable.tn_movie).into(holderMovieTnImg)
+                Glide.with(binding.root).load(res.thumbnail).error(R.drawable.tn_movie)
+                    .into(holderMovieTnImg)
                 //Glide.with(binding.root).load(R.drawable.tn_movie).into(holderMovieTnImg)
                 val r = binding.root.context.resources
 
-                holderMovieNameText.text = r.getString(R.string.holder_movie_name,res.name)
-                holderMovieYearText.text = r.getString(R.string.holder_movie_release,res.release)
-                holderMovieRateText.text = r.getString(R.string.holder_movie_rate,res.rating)
+                holderMovieNameText.text = r.getString(R.string.holder_movie_name, res.name)
+                holderMovieYearText.text = r.getString(R.string.holder_movie_release, res.release)
+                holderMovieRateText.text = r.getString(R.string.holder_movie_rate, res.rating)
                 holderContainer.setOnClickListener {
                     onItemClicked(res)
                 }
@@ -56,7 +60,7 @@ class MovieAdapter (private val onItemClicked: (Movie) -> Unit,private val onLas
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Movie>() {
             override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.name == newItem.name
             }
 
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {

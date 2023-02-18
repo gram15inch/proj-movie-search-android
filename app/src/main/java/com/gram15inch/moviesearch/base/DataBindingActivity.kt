@@ -13,14 +13,11 @@ import com.google.android.material.snackbar.Snackbar
 abstract class DataBindingActivity<T : ViewDataBinding>(val layout: Int) : AppCompatActivity() {
     protected lateinit var binding: T
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layout)
         binding.lifecycleOwner = this
     }
-
 
     fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

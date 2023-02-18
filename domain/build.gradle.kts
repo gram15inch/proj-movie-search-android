@@ -5,6 +5,7 @@ import com.gram15inch.buildsrc.Google
 import com.gram15inch.buildsrc.Libraries
 import com.gram15inch.buildsrc.UnitTest
 import com.gram15inch.buildsrc.AndroidTest
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 
 plugins {
@@ -30,8 +31,10 @@ android {
             }
         }
         consumerProguardFiles("consumer-rules.pro")
-    }
 
+        buildConfigField("String", "NAVER_CLIENT_ID", getProperty("NAVER_CLIENT_ID"))
+        buildConfigField("String", "NAVER_CLIENT_SECRET", getProperty("NAVER_CLIENT_SECRET"))
+    }
 
     buildTypes {
         release {
@@ -50,7 +53,9 @@ android {
         jvmTarget = "1.8"
     }
 }
-
+fun getProperty(property: String): String {
+    return gradleLocalProperties(rootDir).getProperty(property)
+}
 dependencies {
     testImplementation(UnitTest.JUNIT)
 
@@ -89,3 +94,4 @@ dependencies {
 // Timber : Log util
     implementation(Libraries.TIMBER)
 }
+

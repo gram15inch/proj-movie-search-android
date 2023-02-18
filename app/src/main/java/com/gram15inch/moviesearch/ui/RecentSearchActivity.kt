@@ -2,6 +2,7 @@ package com.gram15inch.moviesearch.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.gram15inch.domain.model.RecentSearch
 import com.gram15inch.domain.policy.ExtraPolicy
 import com.gram15inch.moviesearch.R
 import com.gram15inch.moviesearch.base.DataBindingActivity
@@ -19,8 +20,8 @@ class RecentSearchActivity :
         binding.viewModel = viewModel
     }
 
-    val recentSearchClickListener: (String) -> Unit = {
-        intent.putExtra(ExtraPolicy.RECENT_SEARCH,it)
+    val recentSearchClickListener: (RecentSearch) -> Unit = {
+        intent.putExtra(ExtraPolicy.RECENT_SEARCH,it.title)
         setResult(RESULT_OK,intent)
         finish()
     }

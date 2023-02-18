@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gram15inch.domain.model.RecentSearch
 import com.gram15inch.moviesearch.databinding.LayoutHolderRecentSearchBinding
 
-class RecentSearchAdapter(private val onItemClicked: (String) -> Unit) :
-    ListAdapter<String, RecyclerView.ViewHolder>(DiffCallback) {
+class RecentSearchAdapter(private val onItemClicked: (RecentSearch) -> Unit) :
+    ListAdapter<RecentSearch, RecyclerView.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return RecentSearchViewHolder(
@@ -32,9 +33,9 @@ class RecentSearchAdapter(private val onItemClicked: (String) -> Unit) :
     inner class RecentSearchViewHolder(var binding: LayoutHolderRecentSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("CheckResult")
-        fun bind(res: String) {
+        fun bind(res: RecentSearch) {
             binding.apply {
-                holderRecentSearchText.text = res
+                holderRecentSearchText.text = res.title
 
                 holderRecentSearchText.setOnClickListener {
                     onItemClicked(res)
@@ -45,12 +46,12 @@ class RecentSearchAdapter(private val onItemClicked: (String) -> Unit) :
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem == newItem
+        private val DiffCallback = object : DiffUtil.ItemCallback<RecentSearch>() {
+            override fun areItemsTheSame(oldItem: RecentSearch, newItem: RecentSearch): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            override fun areContentsTheSame(oldItem: RecentSearch, newItem: RecentSearch): Boolean {
                 return oldItem == newItem
 
             }

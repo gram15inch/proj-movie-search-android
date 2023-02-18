@@ -24,6 +24,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
     }
 
     buildTypes {
@@ -43,6 +44,7 @@ android {
         jvmTarget = "1.8"
     }
 }
+
 
 dependencies {
     implementation(project(mapOf("path" to ":domain")))
@@ -69,13 +71,31 @@ dependencies {
     kapt(Libraries.MOSHI_CODEGEN)
 
 
-
     implementation (Libraries.OKHTTP)
-
     implementation (Libraries.OKHTTP_LOGGING_INTERCEPTOR)
 
     //coroutine
     testImplementation (Kotlin.COROUTINES_TEST)
+
+
+    // room
+    implementation(AndroidX.ROOM_RUNTIME)
+    annotationProcessor(AndroidX.ROOM_COMPILER)
+    implementation(AndroidX.ROOM_KTX)
+    kapt(AndroidX.ROOM_COMPILER)
+    //implementation(AndroidX.ROOM_PAGING)
+
+
+    // junit5
+    testImplementation (UnitTest.JUNIT_JUPITER_API)
+    testRuntimeOnly (UnitTest.JUNIT_JUPITER_ENGINE)
+    testImplementation (UnitTest.JUNIT_JUPITER_PARAMS)
+
+    androidTestImplementation (AndroidX.TEST_RUNNER)
+    androidTestImplementation (UnitTest.JUNIT_JUPITER_API)
+
+    androidTestImplementation (UnitTest.JUNIT5_TEST_CORE)
+    androidTestRuntimeOnly (UnitTest.JUNIT5_TEST_RUNNER)
 
     // Timber : Log util
     implementation(Libraries.TIMBER)

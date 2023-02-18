@@ -1,9 +1,9 @@
 package com.gram15inch.moviesearch.com.gram15inch.moviesearch
 
-import android.widget.AdapterView.OnItemClickListener
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gram15inch.domain.model.Movie
+import com.gram15inch.domain.model.RecentSearch
 import com.gram15inch.moviesearch.com.gram15inch.moviesearch.adapter.MovieAdapter
 import com.gram15inch.moviesearch.com.gram15inch.moviesearch.adapter.RecentSearchAdapter
 
@@ -24,7 +24,7 @@ object BindingAdapters {
 
     @BindingAdapter("recentSearchItems","onRecentSearchClickListener")
     @JvmStatic
-    fun setRecentSearchItems(recyclerView: RecyclerView, items : List<String>, clickListener:(String)->Unit){
+    fun setRecentSearchItems(recyclerView: RecyclerView, items : List<RecentSearch>, clickListener:(RecentSearch)->Unit){
         if(recyclerView.adapter == null) {
             val adapter = RecentSearchAdapter(clickListener)
             recyclerView.adapter = adapter

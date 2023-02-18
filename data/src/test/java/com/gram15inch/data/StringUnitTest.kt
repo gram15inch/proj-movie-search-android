@@ -1,0 +1,18 @@
+package com.gram15inch.data
+
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+
+
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+class StringUnitTest {
+    @Test
+    fun htmlRemove() {
+        val rg = "<[^>]*>".toRegex()
+        assertEquals("안녕", "<b>안녕</b>".replace(rg,""))
+    }
+}
