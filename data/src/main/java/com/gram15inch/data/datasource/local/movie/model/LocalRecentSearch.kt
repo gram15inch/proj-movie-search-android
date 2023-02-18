@@ -7,6 +7,6 @@ import java.util.*
 
 @Entity
 data class LocalRecentSearch(
-    @PrimaryKey(autoGenerate = true) val rid: Int,
-    val title:String,
+    @PrimaryKey(autoGenerate = true) val rid: Int=0,
+    val title:String="",
 )

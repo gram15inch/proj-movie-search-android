@@ -1,7 +1,8 @@
 package com.gram15inch.data.datasource.remote.movie
 
 import com.gram15inch.data.datasource.remote.movie.model.MovieResponse
-import com.gram15inch.domain.policy.NetworkPolicy
+import com.gram15inch.data.policy.NetworkPolicy
+
 import retrofit2.Response
 import retrofit2.http.*
 

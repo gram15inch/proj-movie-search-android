@@ -1,6 +1,7 @@
 package com.gram15inch.data.di
 
-import com.gram15inch.domain.policy.NetworkPolicy
+
+import com.gram15inch.data.policy.NetworkPolicy
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

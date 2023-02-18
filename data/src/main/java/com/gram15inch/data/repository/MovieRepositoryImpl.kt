@@ -17,11 +17,11 @@ class MovieRepositoryImpl @Inject constructor(
         return movieRemoteDataSource.getMovies(query).map { toMovie(it) }
     }
 
-    override suspend fun addRecentSearch(title: String) {
-        movieLocalDataSource.insertRecentSearches(title)
-    }
-
     override suspend fun getRecentSearches(): List<RecentSearch> {
         return movieLocalDataSource.selectRecentSearch().map { toRecentSearch(it)}
+    }
+
+    override suspend fun addRecentSearch(title: String) {
+        movieLocalDataSource.insertRecentSearches(title)
     }
 }

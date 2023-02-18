@@ -1,8 +1,8 @@
 package com.gram15inch.data.datasource.remote.movie
 
 import com.gram15inch.data.datasource.remote.movie.model.RemoteMovie
+import com.gram15inch.data.policy.responseErrorHandle
 import com.gram15inch.data.repository.datasource.MovieRemoteDataSource
-import com.gram15inch.domain.policy.responseErrorHandle
 import javax.inject.Inject
 
 class MovieRemoteDataSourceImpl @Inject constructor(private val movieApiService: MovieApiService) :

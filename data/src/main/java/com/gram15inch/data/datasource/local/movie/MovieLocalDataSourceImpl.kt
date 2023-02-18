@@ -10,10 +10,10 @@ class MovieLocalDataSourceImpl @Inject constructor(private val movieDatabase: Mo
     }
 
     override suspend fun insertRecentSearches(title:String) {
-        movieDatabase.userDao().insertRecentSearches(LocalRecentSearch(0,title))
+        movieDatabase.userDao().insertRecentSearches(LocalRecentSearch(title=title))
     }
 
     override suspend fun deleteRecentSearches(rid:Int) {
-        movieDatabase.userDao().deleteRecentSearches(LocalRecentSearch(rid,""))
+        movieDatabase.userDao().deleteRecentSearches(LocalRecentSearch(rid))
     }
 }
