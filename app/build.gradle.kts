@@ -152,5 +152,6 @@ dependencies {
 
     // 사진 불러오기
     implementation (Libraries.GLIDE)
+    kapt(Libraries.GLIDE_COMPILER)
 
 }

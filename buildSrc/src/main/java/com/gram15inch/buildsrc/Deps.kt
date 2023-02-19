@@ -127,6 +127,7 @@ object Libraries {
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"//
     const val AMARJAIN07_STICKYSCROLLVIEW = "com.github.amarjain07:StickyScrollView:${Versions.AMARJAIN07}"//
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"//4.11.0
+    const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE}"//4.11.0
 
 }
 

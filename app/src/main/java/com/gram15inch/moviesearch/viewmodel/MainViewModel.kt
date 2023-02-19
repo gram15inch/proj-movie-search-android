@@ -18,7 +18,7 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
     val movies = _movies.asStateFlow()
 
     private var movieTotalCount = 0
-    val searchCurrent = MutableStateFlow("아바타")
+    val searchCurrent = MutableStateFlow("")
     fun refreshMovie() {
         viewModelScope.launch(exceptionHandler) {
             movieRepository.getMovies(searchCurrent.value, 1).also {
@@ -26,8 +26,7 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
                     movieTotalCount = it.first().total
                     _movies.emit(it)
                 } else {
-                    movieTotalCount =0
-                    _movies.emit(emptyList())
+                    clearMovie()
                 }
             }
         }
@@ -60,7 +59,12 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
             movieRepository.addRecentSearch(searchCurrent.value)
         }
     }
-
+    fun clearMovie(){
+        viewModelScope.launch {
+            movieTotalCount =0
+            _movies.emit(emptyList())
+        }
+    }
     @Suppress("unused")
     private fun getMovieList(size: Int): List<Movie> {
 

@@ -40,6 +40,7 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
                     ResponseState.ERROR -> {
                         showSnackBar("요청실패")
                         viewModel.responseState.emit(ResponseState.NONE)
+                        viewModel.clearMovie()
                     }
                     else -> {
                     }

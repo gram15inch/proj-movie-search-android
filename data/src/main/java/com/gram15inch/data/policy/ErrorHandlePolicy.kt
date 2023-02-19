@@ -12,6 +12,14 @@ fun <T> responseErrorHandle(response: Response<T>):T{
                 throw ResponseException("바디없음")
         }
     else {
-        throw ResponseException("서버 연결실패 ${response.errorBody()}")
+        when(response.code()){
+            400->{throw ResponseException("요청값 오류")}
+            403->{throw ResponseException("api 권한없음")}
+            404->{throw ResponseException("존재하지 않는 api")}
+            500->{throw ResponseException("시스템 에러")}
+            else->{
+                throw ResponseException("요청 실패 code:${response.code()}")
+            }
+        }
     }
 }
