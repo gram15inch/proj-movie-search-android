@@ -34,7 +34,16 @@ android {
         testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
     }
-
+    applicationVariants.all {
+        val variant = this
+        variant.outputs
+            .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+            .forEach { output ->
+                val outputFileName = "MovieSearch - ${variant.baseName} - ${variant.versionName} ${variant.versionCode}.apk"
+                println("OutputFileName: $outputFileName")
+                output.outputFileName = outputFileName
+            }
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
