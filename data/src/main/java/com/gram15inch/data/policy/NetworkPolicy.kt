@@ -7,5 +7,4 @@ object NetworkPolicy {
 
     const val NAVER_HEADER_CLIENT_ID = "X-Naver-Client-Id:${BuildConfig.NAVER_CLIENT_ID}"
     const val NAVER_HEADER_CLIENT_SECRET = "X-Naver-Client-Secret:${BuildConfig.NAVER_CLIENT_SECRET}"
-
 }

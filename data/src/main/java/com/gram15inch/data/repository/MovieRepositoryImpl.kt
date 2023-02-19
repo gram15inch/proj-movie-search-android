@@ -13,8 +13,8 @@ class MovieRepositoryImpl @Inject constructor(
     private val movieLocalDataSource: MovieLocalDataSource,
     private val movieRemoteDataSource: MovieRemoteDataSource
 ) : MovieRepository {
-    override suspend fun getMovies(query:String): List<Movie> {
-        return movieRemoteDataSource.getMovies(query).map { toMovie(it) }
+    override suspend fun getMovies(query: String, start: Int): List<Movie> {
+        return movieRemoteDataSource.getMovieResponse(query, start).run { this.items.map { toMovie(it, this.total) }}
     }
 
     override suspend fun getRecentSearches(): List<RecentSearch> {

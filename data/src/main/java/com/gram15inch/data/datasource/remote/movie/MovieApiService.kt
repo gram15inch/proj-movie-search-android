@@ -13,7 +13,8 @@ interface MovieApiService {
     )
     @GET("v1/search/movie.json")
     suspend fun getMovies(
-        @Query("query") query:String,
+        @Query("query") query: String,
+        @Query("start") start: Int,
     ): Response<MovieResponse>
 
 }

@@ -41,7 +41,8 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
                         showSnackBar("요청실패")
                         viewModel.responseState.emit(ResponseState.NONE)
                     }
-                    else -> {}
+                    else -> {
+                    }
                 }
             }
         }
@@ -53,9 +54,8 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
         startActivity(intent)
     }
 
-    val lastPageListener: (Int) -> Unit = {
-        viewModel.refreshMovie()
-        showSnackBar("refresh $it")
+    val lastPageListener: () -> Unit = {
+        viewModel.refreshMoreMovie()
     }
 
     val searchClickListener = OnClickListener {

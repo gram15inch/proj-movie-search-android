@@ -13,7 +13,7 @@ object BindingAdapters {
 
     @BindingAdapter("movieItems","onMovieClickListener","onLastPageListener")
     @JvmStatic
-    fun setMovieItems(recyclerView: RecyclerView, items : List<Movie>, clickListener:(Movie)->Unit, lastPageListener:(Int)->Unit){
+    fun setMovieItems(recyclerView: RecyclerView, items : List<Movie>, clickListener:(Movie)->Unit, lastPageListener:()->Unit){
         if(recyclerView.adapter == null) {
             val adapter = MovieAdapter(clickListener,lastPageListener)
             recyclerView.adapter = adapter

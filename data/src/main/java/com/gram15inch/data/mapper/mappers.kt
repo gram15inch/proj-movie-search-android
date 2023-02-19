@@ -5,13 +5,14 @@ import com.gram15inch.data.datasource.remote.movie.model.RemoteMovie
 import com.gram15inch.domain.model.Movie
 import com.gram15inch.domain.model.RecentSearch
 
-fun toMovie(remoteMovie: RemoteMovie): Movie {
+fun toMovie(remoteMovie: RemoteMovie, total: Int): Movie {
     return Movie(
         remoteMovie.title.replace("<[^>]*>".toRegex(), ""),
         remoteMovie.pubDate,
         remoteMovie.image,
         remoteMovie.link,
-        remoteMovie.userRating.toFloat()
+        remoteMovie.userRating.toFloat(),
+        total
     )
 }
 

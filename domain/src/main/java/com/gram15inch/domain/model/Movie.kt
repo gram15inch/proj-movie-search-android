@@ -5,5 +5,6 @@ data class Movie(
     val release: String,
     val thumbnail: String,
     val url: String,
-    val rating: Float
+    val rating: Float,
+    val total: Int
 )

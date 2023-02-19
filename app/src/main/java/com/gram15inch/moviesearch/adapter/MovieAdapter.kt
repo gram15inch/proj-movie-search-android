@@ -13,7 +13,7 @@ import com.gram15inch.moviesearch.databinding.LayoutHolderMovieBinding
 
 class MovieAdapter(
     private val onItemClicked: (Movie) -> Unit,
-    private val onLastPageListener: (Int) -> Unit
+    private val onLastPageListener: () -> Unit
 ) :
     ListAdapter<Movie, RecyclerView.ViewHolder>(DiffCallback) {
 
@@ -33,7 +33,7 @@ class MovieAdapter(
         val current = getItem(position)
         (holder as MovieViewHolder).bind(current)
         if (position == currentList.size - 1)
-            onLastPageListener(currentList.size + 10)
+            onLastPageListener()
     }
 
     inner class MovieViewHolder(var binding: LayoutHolderMovieBinding) :

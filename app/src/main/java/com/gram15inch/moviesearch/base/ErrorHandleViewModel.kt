@@ -22,6 +22,9 @@ abstract class ErrorHandleViewModel : ViewModel() {
                 is ResponseException ->{
                     responseState.emit(ResponseState.ERROR)
                 }
+                else ->{
+                    responseState.emit(ResponseState.ERROR)
+                }
             }
         }
     }
