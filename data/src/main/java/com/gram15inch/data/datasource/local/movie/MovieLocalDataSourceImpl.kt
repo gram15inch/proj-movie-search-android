@@ -6,14 +6,14 @@ import javax.inject.Inject
 
 class MovieLocalDataSourceImpl @Inject constructor(private val movieDatabase: MovieDatabase) : MovieLocalDataSource {
     override suspend fun selectRecentSearch(): List<LocalRecentSearch> {
-       return movieDatabase.userDao().selectRecentSearches()
+       return movieDatabase.movieDao().selectRecentSearches()
     }
 
     override suspend fun insertRecentSearches(title:String) {
-        movieDatabase.userDao().insertRecentSearches(LocalRecentSearch(title=title))
+        movieDatabase.movieDao().insertRecentSearches(LocalRecentSearch(title=title))
     }
 
     override suspend fun deleteRecentSearches(rid:Int) {
-        movieDatabase.userDao().deleteRecentSearches(LocalRecentSearch(rid))
+        movieDatabase.movieDao().deleteRecentSearches(LocalRecentSearch(rid))
     }
 }
